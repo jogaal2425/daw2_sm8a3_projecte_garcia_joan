@@ -74,7 +74,7 @@
 
         <div>
             <a href="creausuari.php" class="btn-custom">Crear Usuari</a>
-            <a href="modificar_usuario.php" class="btn-custom">Modificar Usuari</a>
+            <a href="modificarusuari.php" class="btn-custom">Modificar Usuari</a>
             <a href="mostrar_usuario.php" class="btn-custom">Mostrar Usuari</a>
             <a href="eliminar_usuario.php" class="btn-custom">Eliminar Usuari</a>
         </div>
