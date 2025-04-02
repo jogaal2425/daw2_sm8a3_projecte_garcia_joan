@@ -82,5 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Descripció: <input type="text" name="descripcio" required></label><br>
         <input type="submit" value="Crear Usuari">
     </form>
+    <br>
+    <a href="menu.php">Tornar al menú</a>
 </body>
 </html>

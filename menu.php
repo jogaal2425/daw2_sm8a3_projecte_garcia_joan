@@ -66,16 +66,14 @@
 </head>
 <body>
     <div class="container">
-        <?php
-            session_start();
-            echo "<h5 class='session-info'>Sessió iniciada com usuari: " . $_SESSION['adm'] . "</h5><br><br>";
-        ?>
+        
         <h2>MENÚ</h2>
 
         <div>
             <a href="creausuari.php" class="btn-custom">Crear Usuari</a>
             <a href="modificarusuari.php" class="btn-custom">Modificar Usuari</a>
-            <a href="mostrar_usuario.php" class="btn-custom">Mostrar Usuari</a>
+            <a href="llistarunusuari.php" class="btn-custom">Mostrar Un Usuari</a>
+            <a href="llistarusuaris.php" class="btn-custom">Mostrar Tots Els Usuaris</a>
             <a href="eliminar_usuario.php" class="btn-custom">Eliminar Usuari</a>
         </div>
         <br>
