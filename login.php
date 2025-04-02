@@ -68,6 +68,7 @@
             <input type="submit" value="Envia">
             <input type="reset" value="Neteja">
         </form>
+        <a href="index.php">Tornar al menú</a>
     </div>
 </body>
 </html>

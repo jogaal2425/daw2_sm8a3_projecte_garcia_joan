@@ -3,6 +3,7 @@ require 'vendor/autoload.php';
 use Laminas\Ldap\Ldap;
 
 ini_set('display_errors', 0);
+session_set_cookie_params(0);
 if ($_POST['cts'] && $_POST['adm']){
     $opcions = [
         'host' => 'zend-jogaal.clotfje.net',

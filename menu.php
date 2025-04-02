@@ -1,6 +1,13 @@
 <?php
     session_start();
-    echo "<h5>Sessió iniciada com usuari: ".$_SESSION['adm']."</h5><br><br>"
+    
+    // Si no hay sesión iniciada, redirigir al login
+    if (!isset($_SESSION['adm'])) {
+        header("Location: index.php");
+        exit();
+    }
+
+    echo "<h5>Sessió iniciada com usuari: " . htmlspecialchars($_SESSION['adm']) . "</h5><br><br>";
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -74,7 +81,7 @@
             <a href="modificarusuari.php" class="btn-custom">Modificar Usuari</a>
             <a href="llistarunusuari.php" class="btn-custom">Mostrar Un Usuari</a>
             <a href="llistarusuaris.php" class="btn-custom">Mostrar Tots Els Usuaris</a>
-            <a href="eliminar_usuario.php" class="btn-custom">Eliminar Usuari</a>
+            <a href="eliminarusuari.php" class="btn-custom">Eliminar Usuari</a>
         </div>
         <br>
         <div>

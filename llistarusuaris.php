@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Si no hay sesión iniciada, redirigir al login
+if (!isset($_SESSION['adm'])) {
+    header("Location: index.php");
+    exit();
+}
+
 require 'vendor/autoload.php';
 use Laminas\Ldap\Ldap;
 
@@ -79,12 +87,12 @@ $resultats = $ldap->search($filtres, $domini, Ldap::SEARCH_SCOPE_SUB);
         </tr>
         <?php foreach ($resultats as $usuari) { 
             $dnParts = ldap_explode_dn($usuari['dn'], 1);
-            $uid = $dnParts[0] ?? '';
-            $ou = isset($dnParts[1]) ? $dnParts[1] : 'Desconegut';
+            $uid = isset($dnParts[0]) ? htmlspecialchars($dnParts[0]) : 'Desconegut';
+            $ou = isset($dnParts[1]) ? htmlspecialchars($dnParts[1]) : 'Desconegut';
         ?>
             <tr>
-                <td><?php echo htmlspecialchars($uid); ?></td>
-                <td><?php echo htmlspecialchars($ou); ?></td>
+                <td><?php echo $uid; ?></td>
+                <td><?php echo $ou; ?></td>
                 <td><?php echo htmlspecialchars($domini); ?></td>
             </tr>
         <?php } ?>

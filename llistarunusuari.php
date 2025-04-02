@@ -1,8 +1,18 @@
 <?php
+session_start();
+
+
+if (!isset($_SESSION['adm'])) {
+    header("Location: index.php");
+    exit();
+}
+
 require 'vendor/autoload.php';
 use Laminas\Ldap\Ldap;
+
 ini_set('display_errors', 0);
-if ($_GET['usr'] && $_GET['ou']) {
+
+if (isset($_GET['usr']) && isset($_GET['ou'])) {
     $domini = 'dc=clotfje,dc=net';
     $opcions = [
         'host' => 'zend-jogaal.clotfje.net',
@@ -12,15 +22,32 @@ if ($_GET['usr'] && $_GET['ou']) {
         'accountDomainName' => 'clotfje.net',
         'baseDn' => 'dc=clotfje,dc=net',
     ];
-    $ldap = new Ldap($opcions);
-    $ldap->bind();
-    $entrada = 'uid=' . $_GET['usr'] . ',ou=' . $_GET['ou'] . ',dc=clotfje,dc=net';
-    $usuari = $ldap->getEntry($entrada);
-    echo "<div class='result'><b><u>" . $usuari["dn"] . "</b></u><br>";
-    foreach ($usuari as $atribut => $dada) {
-        if ($atribut != "dn") echo $atribut . ": " . $dada[0] . '<br>';
+    
+    try {
+        $ldap = new Ldap($opcions);
+        $ldap->bind();
+        
+        // Sanitización de entradas
+        $usr = htmlspecialchars($_GET['usr'], ENT_QUOTES, 'UTF-8');
+        $ou = htmlspecialchars($_GET['ou'], ENT_QUOTES, 'UTF-8');
+
+        $entrada = "uid=$usr,ou=$ou,dc=clotfje,dc=net";
+        $usuari = $ldap->getEntry($entrada);
+
+        if ($usuari) {
+            echo "<div class='result'><b><u>" . htmlspecialchars($usuari["dn"]) . "</b></u><br>";
+            foreach ($usuari as $atribut => $dada) {
+                if ($atribut != "dn") {
+                    echo htmlspecialchars($atribut) . ": " . htmlspecialchars(is_array($dada) ? implode(", ", $dada) : $dada) . "<br>";
+                }
+            }
+            echo "</div>";
+        } else {
+            echo "<div class='result'>L'usuari no existeix o no té permisos suficients.</div>";
+        }
+    } catch (Exception $e) {
+        echo "<div class='result'>Error en la connexió LDAP: " . htmlspecialchars($e->getMessage()) . "</div>";
     }
-    echo "</div>";
 }
 ?>
 <!DOCTYPE html>
@@ -72,11 +99,23 @@ if ($_GET['usr'] && $_GET['ou']) {
             margin-top: 20px;
             display: inline-block;
         }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <h2>Escull un usuari per cercar:</h2>
-    <form action="http://zend-jogaal.clotfje.net/daw2_sm8a3_projecte_garcia_joan/llistarunusuari.php" method="GET">
+    <form action="llistarunusuari.php" method="GET">
         <label for="ou">Unitat organitzativa:</label>
         <input type="text" name="ou" id="ou" required><br>
         <label for="usr">Usuari:</label>
