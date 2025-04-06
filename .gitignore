@@ -1,0 +1,7 @@
+/vendor/
+/paquets/
+/composer.lock
+/composer.json
+/deployment.xml
+/.settings/
+
