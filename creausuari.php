@@ -74,7 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Crear Usuari LDAP</title>
+    <title>Crear Usuari</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -173,7 +174,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label>Telèfon: <input type="text" name="telefon" required></label><br>
             <label>Títol: <input type="text" name="titol" required></label><br>
             <label>Descripció: <input type="text" name="descripcio" required></label><br>
-            <input type="submit" value="Crear Usuari">
+            <button type="submit" class="btn btn-primary w-100">Crear Usuari</button>
+            
         </form>
     </div>
     <br>

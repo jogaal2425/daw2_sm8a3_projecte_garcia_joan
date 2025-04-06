@@ -67,6 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Usuari</title>
@@ -141,6 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
 </head>
+
 <body>
 
     <h1>Modificar Usuari</h1>
@@ -161,6 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="hidden" name="_method" value="PUT">
             <input type="hidden" name="uid" value="<?php echo $uid; ?>">
             <input type="hidden" name="unorg" value="<?php echo $unorg; ?>">
+            <input type="hidden" name="modificar" value="1">
 
             <label>
                 <input type="radio" name="atributo" value="cn" required>
@@ -190,7 +194,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="nuevoValor">Nou valor:</label><br>
             <input type="text" name="nuevoValor" required><br><br>
 
-            <input type="submit" name="modificar" value="Modificar Atribut">
+            <button type="submit" class="btn btn-primary w-100">Modificar Usuari</button>
+            
         </form>
     <?php endif; ?>
 

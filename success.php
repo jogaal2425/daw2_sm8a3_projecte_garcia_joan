@@ -12,6 +12,8 @@ if (isset($_GET['message'])) {
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <title>Success</title>
     <style>
         body {
@@ -58,7 +60,6 @@ if (isset($_GET['message'])) {
     </style>
 </head>
 <body>
-    <h2>Èxit!</h2>
     <div class="container">
         <p class="message"><?php echo $message; ?></p>
         <a href="logout.php">Finalitzar Sessió</a>

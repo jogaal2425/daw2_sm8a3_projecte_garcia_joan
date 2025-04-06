@@ -14,6 +14,8 @@ ini_set('display_errors', 0);
 <!DOCTYPE html>
 <html lang="ca">
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cercar Usuari</title>
@@ -25,26 +27,36 @@ ini_set('display_errors', 0);
             text-align: center;
             padding: 20px;
         }
+
         h2 {
             color: #007bff;
         }
-        form {
+
+        .container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             display: inline-block;
-            width: 100%;
-            max-width: 600px;
+            width: 300px;
+            margin-top: 20px;
         }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
         input[type="text"] {
             padding: 8px;
-            margin: 10px 0;
+            margin: 8px 0;
             border: 1px solid #007bff;
             border-radius: 5px;
             width: 100%;
         }
-        input[type="submit"], input[type="reset"], .menu-btn {
+
+        input[type="submit"] {
             background-color: #007bff;
             color: white;
             border: none;
@@ -54,46 +66,55 @@ ini_set('display_errors', 0);
             cursor: pointer;
             width: 100%;
         }
-        input[type="submit"]:hover, input[type="reset"]:hover, .menu-btn:hover {
+
+        input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        .menu-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .menu-btn:hover {
+            background-color: #0056b3;
+        }
+
         .result {
             background: #ffffff;
             padding: 20px;
             border-radius: 5px;
-            margin-bottom: 20px;
+            margin: 20px auto;
             display: inline-block;
             text-align: left;
             max-width: 600px;
             box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.2);
             width: 100%;
         }
+
         .atribut {
             color: #007bff;
             margin: 6px 0;
             font-size: 16px;
         }
+
         .success {
             color: green;
             font-weight: bold;
             margin-top: 20px;
         }
+
         .error {
             color: red;
             font-weight: bold;
             margin-top: 20px;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        a:hover {
-            background-color: #0056b3;
         }
     </style>
 </head>
@@ -101,7 +122,6 @@ ini_set('display_errors', 0);
     <h2>Escull un usuari per cercar:</h2>
 
     <?php
-    // Verificar si se ha enviado el formulario
     if (isset($_GET['usr']) && isset($_GET['ou'])) {
         $uid = htmlspecialchars($_GET['usr'], ENT_QUOTES, 'UTF-8');
         $unorg = htmlspecialchars($_GET['ou'], ENT_QUOTES, 'UTF-8');
@@ -136,31 +156,28 @@ ini_set('display_errors', 0);
                     echo "</div>";
                     echo "<p class='success'>L'Usuari '$uid' trobat correctament.</p>";
                 } else {
-                    // Redirigir a error.php con el mensaje de error
                     header("Location: error.php?error=L'usuari '$uid' no existeix a la OU '$unorg'.");
                     exit();
                 }
 
             } catch (Exception $e) {
-                // Redirigir a error.php con el mensaje de error
                 header("Location: error.php?error=" . urlencode($e->getMessage()));
                 exit();
             }
         } else {
-            // Redirigir a error.php si falta información
             header("Location: error.php?error=Per favor, completa tots els camps.");
             exit();
         }
     }
     ?>
 
-    <form action="llistarunusuari.php" method="GET">
+    <form class="container" action="llistarunusuari.php" method="GET">
         <label for="ou">Unitat organitzativa:</label>
         <input type="text" name="ou" id="ou" required><br>
         <label for="usr">Usuari:</label>
         <input type="text" name="usr" id="usr" required><br>
-        <input type="submit" value="Cercar Usuari">
-        <!-- Botón para volver al menú -->
+        <button type="submit" class="btn btn-primary w-100">Cercar Usuari</button>
+        
         <a href="menu.php" class="menu-btn">Tornar al menú</a>
     </form>
 

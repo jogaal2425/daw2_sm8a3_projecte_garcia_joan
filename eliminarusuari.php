@@ -61,6 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Usuari</title>
@@ -140,7 +142,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="ou">Unitat Organitzativa(OU):</label>
             <input type="text" id="ou" name="ou" required>
 
-            <input type="submit" value="Eliminar Usuari">
+            <button type="submit" class="btn btn-primary w-100">Eliminar Usuari</button>
+            
+            
         </form>
 
         <a href="menu.php">Tornar al menú</a>

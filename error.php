@@ -10,6 +10,8 @@ if (!isset($_SESSION['adm'])) {
 <!DOCTYPE html>
 <html lang="ca">
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error</title>
@@ -72,7 +74,6 @@ if (!isset($_SESSION['adm'])) {
     </style>
 </head>
 <body>
-    <h2>Error</h2>
     <div class="container">
         <p class="message"><?php echo isset($_GET['error']) ? htmlspecialchars($_GET['error']) : "Ha ocurrido un error."; ?></p>
         <a href="menu.php">Tornar al menú</a><br>
