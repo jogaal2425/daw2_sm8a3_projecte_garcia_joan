@@ -1,15 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Informació sobre l'aplicació LDAP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informació sobre l'aplicació LDAP</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -36,6 +36,19 @@
         .features li {
             margin-bottom: 5px;
         }
+        .return-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .return-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -50,8 +63,8 @@
             <li>Eliminació d'usuaris de la base de dades.</li>
         </ul>
         <p>Amb una interfície intuïtiva i fàcil d'usar, aquesta aplicació facilita l'administració d'usuaris en sistemes LDAP.</p>
-        </div>
-        <a href="index.php">Torna a la pàgina inicial</a>
-        </body>
-        </html>
-        
+    </div>
+
+    <a href="index.php" class="return-button">Torna a la pàgina inicial</a>
+</body>
+</html>

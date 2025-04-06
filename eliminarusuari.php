@@ -1,6 +1,11 @@
 <?php
 require 'vendor/autoload.php';
 use Laminas\Ldap\Ldap;
+session_start();
+if (!isset($_SESSION['adm'])) {
+    header("Location: index.php");
+    exit();
+}
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -32,15 +37,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verificar si el usuario existe
             if ($ldap->exists($dn)) {
                 $ldap->delete($dn);
-                $mensaje = "<p class='success'>Usuario '$uid' eliminado correctamente.</p>";
+                // Redirigir a success.php con el mensaje de éxito
+                header("Location: success.php?message=" . urlencode("L'usuari '$uid' eliminat correctament."));
+                exit();
             } else {
-                $mensaje = "<p class='error'> El usuario '$uid' no existe en la OU '$unorg'.</p>";
+                // Redirigir a error.php si el usuario no existe
+                header("Location: error.php?error=" . urlencode("L'usuari '$uid' no existeix a la OU '$unorg'."));
+                exit();
             }
         } catch (Exception $e) {
-            $mensaje = "<p class='error'>Error: " . $e->getMessage() . "</p>";
+            // Redirigir a error.php en caso de excepción
+            header("Location: error.php?error=" . urlencode("Error: " . $e->getMessage()));
+            exit();
         }
     } else {
-        $mensaje = "<p class='error'>Por favor, completa todos los campos.</p>";
+        // Redirigir a error.php si los campos no están completos
+        header("Location: error.php?error=" . urlencode("Completa tots els camps."));
+        exit();
     }
 }
 ?>
@@ -50,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Usuario LDAP</title>
+    <title>Eliminar Usuari</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -103,19 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #0056b3;
         }
 
-        .message {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        .success {
-            color: green;
-        }
-
-        .error {
-            color: red;
-        }
-
         a {
             display: inline-block;
             margin-top: 20px;
@@ -131,19 +131,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <h2>Eliminar Usuario LDAP</h2>
+    <h2>Eliminar Usuari</h2>
     <div class="container">
         <form method="POST">
-            <label for="uid">UID del Usuario:</label>
+            <label for="uid">UID del Usuari:</label>
             <input type="text" id="uid" name="uid" required>
 
-            <label for="ou">Unidad Organizativa (OU):</label>
+            <label for="ou">Unitat Organitzativa(OU):</label>
             <input type="text" id="ou" name="ou" required>
 
-            <input type="submit" value="Eliminar Usuario">
+            <input type="submit" value="Eliminar Usuari">
         </form>
-
-        <?php if (!empty($mensaje)) echo "<div class='message'>$mensaje</div>"; ?>
 
         <a href="menu.php">Tornar al menú</a>
     </div>

@@ -24,13 +24,19 @@
         }
         h2 {
             margin-bottom: 20px;
+            color: #007bff;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 8px 0;
         }
         input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 8px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #007bff;
             border-radius: 5px;
         }
         input[type="submit"],
@@ -53,11 +59,22 @@
         input[type="reset"]:hover {
             background-color: #c82333;
         }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Autenticació LDAP</h2>
         <form action="auth.php" method="POST">
             <label for="adm">Usuari amb permisos d'administració LDAP:</label>
             <input type="text" id="adm" name="adm" required>

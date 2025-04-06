@@ -78,7 +78,7 @@ $resultats = $ldap->search($filtres, $domini, Ldap::SEARCH_SCOPE_SUB);
     </style>
 </head>
 <body>
-    <h2>Llista d'Usuaris LDAP</h2>
+    <h2>Llista d'Usuaris</h2>
     <table>
         <tr>
             <th>Usuari</th>

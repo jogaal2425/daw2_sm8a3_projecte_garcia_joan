@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pàgina Inicial - Aplicació LDAP</title>
+    <title>LDAP</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,7 +45,7 @@
         <h2>DAW2 SM8A3</h2>
         <h3>Autor: jogaal2425</h3>
         <h3>Correu: joan2005garcia@gmail.com</h3>
-        <h3>Github: <a href="https://github.com/jogaal2425" target="_blank">Repositori GitHub</a></h3>
+        <h3>Github: <a href="https://github.com/jogaal2425/daw2_sm8a3_projecte_garcia_joan" target="_blank">Repositori GitHub</a></h3>
         
         <a href="login.php">Inicia sessió</a>
         <a href="info.php">Informació sobre l'aplicació</a>
