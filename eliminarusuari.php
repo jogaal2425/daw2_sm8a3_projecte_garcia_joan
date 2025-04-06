@@ -12,14 +12,14 @@ error_reporting(E_ALL);
 
 $mensaje = "";
 
-// Si se envió el formulario, procesamos la eliminación
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST['uid']) && !empty($_POST['ou'])) {
         $uid = trim($_POST['uid']);
         $unorg = trim($_POST['ou']);
         $dn = "uid=$uid,ou=$unorg,dc=clotfje,dc=net";
 
-        // Configuración de conexión LDAP
+     
         $opcions = [
             'host' => 'zend-jogaal.clotfje.net',
             'username' => 'cn=admin,dc=clotfje,dc=net',
@@ -30,28 +30,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
 
         try {
-            // Conectar y autenticar en LDAP
+            
             $ldap = new Ldap($opcions);
             $ldap->bind();
 
-            // Verificar si el usuario existe
+            
             if ($ldap->exists($dn)) {
                 $ldap->delete($dn);
-                // Redirigir a success.php con el mensaje de éxito
+               
                 header("Location: success.php?message=" . urlencode("L'usuari '$uid' eliminat correctament."));
                 exit();
             } else {
-                // Redirigir a error.php si el usuario no existe
+               
                 header("Location: error.php?error=" . urlencode("L'usuari '$uid' no existeix a la OU '$unorg'."));
                 exit();
             }
         } catch (Exception $e) {
-            // Redirigir a error.php en caso de excepción
+            
             header("Location: error.php?error=" . urlencode("Error: " . $e->getMessage()));
             exit();
         }
     } else {
-        // Redirigir a error.php si los campos no están completos
+        
         header("Location: error.php?error=" . urlencode("Completa tots els camps."));
         exit();
     }

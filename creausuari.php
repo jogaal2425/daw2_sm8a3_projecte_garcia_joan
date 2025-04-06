@@ -55,16 +55,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $dn = 'uid=' . $uid . ',ou=' . $unorg . ',dc=clotfje,dc=net';
 
         if ($ldap->add($dn, $nova_entrada)) {
-            // Redirigir a success.php si el usuario se creó correctamente
+            
             header("Location: success.php?message=" . urlencode('Usuari creat correctament.'));
             exit();
         } else {
-            // Redirigir a error.php si hay un error
+            
             header("Location: error.php?error=" . urlencode('Error en la creació de l\'usuari.'));
             exit();
         }
     } catch (Exception $e) {
-        // Redirigir a error.php si ocurre un error de conexión o al realizar alguna acción LDAP
+        
         header("Location: error.php?error=" . urlencode($e->getMessage()));
         exit();
     }

@@ -5,7 +5,7 @@ use Laminas\Ldap\Ldap;
 
 ini_set('display_errors', 0);
 
-$mensaje = ""; // Mensaje de éxito o error
+$mensaje = ""; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $method = $_POST['_method'] ?? 'POST';
