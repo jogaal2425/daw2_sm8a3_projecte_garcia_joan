@@ -4,4 +4,5 @@
 /composer.json
 /deployment.xml
 /.settings/
-
+/.buildpath
+/.project
